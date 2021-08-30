@@ -3,36 +3,26 @@ package com.heiwait.tripagency.pricer.specifications.cucumber.steps;
 import com.heiwait.tripagency.pricer.specifications.cucumber.ErrorMessagesProperties;
 import com.heiwait.tripagency.pricer.domain.*;
 import com.heiwait.tripagency.pricer.domain.error.BusinessException;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.mockito.*;
 
 import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculateTripFeesSteps {
-
-    @Mock
-    private TripRepositoryPort tripRepositoryPort;
-    @InjectMocks
-    private TripPricer tripPricer;
+    private final TripRepositoryPort tripRepositoryPort = new FakeTripRepository(this);
+    private final TripPricer tripPricer = new TripPricer(tripRepositoryPort);
 
     private Destination destination;
     private TravelClass travelClass;
-    private Integer agencyFees;
-    private Integer stayFees;
-    private Integer ticketPrice;
+    protected Integer agencyFees;
+    protected Integer stayFees;
+    protected Integer ticketPrice;
 
     private Integer computedPrice;
     private String errorMessage;
-
-    @Before
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Given("^the customer wants to travel to \"([^\"]*)\"$")
     public void the_customer_wants_to_travel_to(String dest) {
@@ -61,26 +51,12 @@ public class CalculateTripFeesSteps {
 
     @When("^the customer asked for the trip price")
     public void the_customer_asked_for_the_trip_price() {
-        Mockito.when(tripRepositoryPort.findTripByDestination(destination)).thenReturn(trip());
-
         try {
             computedPrice = tripPricer.priceTrip(destination, travelClass);
         } catch (BusinessException be) {
             Locale usLocale = new Locale("en", "US");
             Locale.setDefault(usLocale);
             errorMessage = ErrorMessagesProperties.getErrorMessageFromErrorCode(be.error().code());
-        }
-    }
-
-    private Trip trip() {
-        if (destination.name().equals("Sydney")) {
-            return Trip.Builder.MISSING_DESTINATION;
-        } else {
-            return new Trip.Builder().with(builder -> {
-                builder.setAgencyFees(this.agencyFees);
-                builder.setStayFees(this.stayFees);
-                builder.setTicketPrice(this.ticketPrice);
-            }).build();
         }
     }
 
@@ -92,5 +68,26 @@ public class CalculateTripFeesSteps {
     @Then("^the trip price returns the following message \"([^\"]*)\"$")
     public void the_trip_price_returns_the_following_message(String expectedMessage) {
         assertThat(expectedMessage).isEqualTo(errorMessage);
+    }
+
+    public static class FakeTripRepository implements TripRepositoryPort {
+        CalculateTripFeesSteps calculateTripFeesSteps;
+
+        public FakeTripRepository(CalculateTripFeesSteps calculateTripFeesSteps) {
+            this.calculateTripFeesSteps = calculateTripFeesSteps;
+        }
+
+        @Override
+        public Trip findTripByDestination(Destination destination) {
+            if (destination.name().equals("Sydney")) {
+                return Trip.Builder.MISSING_DESTINATION;
+            } else {
+                return new Trip.Builder().with(builder -> {
+                    builder.setAgencyFees(this.calculateTripFeesSteps.agencyFees);
+                    builder.setStayFees(this.calculateTripFeesSteps.stayFees);
+                    builder.setTicketPrice(this.calculateTripFeesSteps.ticketPrice);
+                }).build();
+            }
+        }
     }
 }
