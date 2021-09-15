@@ -34,6 +34,8 @@
 ################################################################################
 ################################################################################
 
+ARTIFACT_VERSION=$1
+BRANCH_NAME=$2
 ##################################################
 # Generates quality report
 # Globals:
@@ -50,7 +52,9 @@ function launch_quality_scan() {
   sonar-scanner -Dsonar.host.url=${SONARQUBE_URL} \
     -Dsonar.login=${SONARQUBE_CREDENTIALS} \
     -Dsonar.sourceEncoding=UTF-8 \
-    -Dsonar.qualitygate.wait=true || exit 1
+    -Dsonar.projectVersion=${ARTIFACT_VERSION} \
+    -Dsonar.qualitygate.wait=true
+    #-Dsonar.branch.name=${BRANCH_NAME}
 }
 
 ################################################################################

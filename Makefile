@@ -33,7 +33,7 @@ build_and_publish_container_image :
 generate_living_documentation_for_domain :
 	./pipeline/scripts/3_quality/generate_living_documentation.sh domain "${ARTIFACT_VERSION}" "${CUKEDOCTOR_MAIN_JAR}"
 launch_quality_scan :
-	./pipeline/scripts/3_quality/launch_quality_scan.sh
+	./pipeline/scripts/3_quality/launch_quality_scan.sh "${ARTIFACT_VERSION}" "${COMMIT_BRANCH}"
 
 # K8S
 connecting_to_kubernetes_cluster :
