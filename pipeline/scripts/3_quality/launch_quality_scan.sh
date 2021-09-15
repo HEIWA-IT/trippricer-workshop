@@ -47,7 +47,10 @@
 #   0 if the scan is executed normally, else 1.
 ##################################################
 function launch_quality_scan() {
-  sonar-scanner -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${SONARQUBE_CREDENTIALS} -Dsonar.sourceEncoding=UTF-8 || exit 1
+  sonar-scanner -Dsonar.host.url=${SONARQUBE_URL} \
+    -Dsonar.login=${SONARQUBE_CREDENTIALS} \
+    -Dsonar.sourceEncoding=UTF-8 \
+    -Dsonar.qualitygate.wait=true || exit 1
 }
 
 ################################################################################
