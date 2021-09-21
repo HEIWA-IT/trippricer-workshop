@@ -22,7 +22,6 @@ public class CalculateTripFeesSteps {
     private String travelClass;
     private Response response;
 
-    String HOST;
     String BASE_URL;
 
     @Before
@@ -31,9 +30,7 @@ public class CalculateTripFeesSteps {
         Locale.setDefault(usLocale);
 
         Map<String, String> env = System.getenv();
-        HOST = env.get("HOST");
-        BASE_URL = HOST;
-        RestAssured.baseURI = BASE_URL;
+        RestAssured.baseURI = env.get("API_BASE_URL");;
     }
 
     @Given("^the customer wants to travel to \"([^\"]*)\"$")

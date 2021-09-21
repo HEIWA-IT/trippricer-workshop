@@ -50,7 +50,7 @@ function deploy()
   helm upgrade --install -f "${HELM_VALUES_FILE}" "${APP_NAME}" "${HELM_CHART_FOLDER}" --set image.tag="${VERSION}"
   kubectl rollout status deployment "${APP_NAME}"-java-rest-api-"${VERSION}"
 
-  while [ $(curl -sw '%{http_code}' "${HOST}/${URI}" -o /dev/null) -ne 200 ]; do
+  while [ $(curl -sw '%{http_code}' "${API_BASE_URL}/${URI}" -o /dev/null) -ne 200 ]; do
     sleep 5;
   done
 }
