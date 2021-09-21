@@ -8,6 +8,8 @@ import org.springframework.security.web.header.writers.StaticHeadersWriter;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String API_URL = System.getenv("API_URL");
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.headers()
@@ -17,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addHeaderWriter(new StaticHeadersWriter("Referrer-Policy", "same-origin"))
                 .addHeaderWriter(new StaticHeadersWriter("Permissions-Policy", "sync-xhr=(none); vibrate=(none); fullscreen=(self); payment=(none);"))
                 .addHeaderWriter(new StaticHeadersWriter("X-Expect-CT", "enforce, max-age=123"))
-                .addHeaderWriter(new StaticHeadersWriter("Content-Security-Policy", "default-src 'self' https://173.212.241.172:12378/trippricer/api/;"))
+                .addHeaderWriter(new StaticHeadersWriter("Content-Security-Policy", "default-src 'self' " + API_URL + ";"))
                 .addHeaderWriter(new StaticHeadersWriter("X-Strict-Transport-Security", "max-age=31536000; includeSubDomains"));
     }
 }

@@ -1,8 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: db-config
+  name: trippricer-config
 data:
+  api.url: https://173.212.241.172:12378/trippricer/api/
   db.url: jdbc:h2:mem:my-trip-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
   db.username: sa
   db.password:

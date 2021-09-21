@@ -34,20 +34,25 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: trippricer-config
+                  key: api.url
             - name: DB_URL
               valueFrom:
                 configMapKeyRef:
-                  name: db-config
+                  name: trippricer-config
                   key: db.url
             - name: DB_USERNAME
               valueFrom:
                 configMapKeyRef:
-                  name: db-config
+                  name: trippricer-config
                   key: db.username
             - name: DB_PASSWORD
               valueFrom:
                 configMapKeyRef:
-                  name: db-config
+                  name: trippricer-config
                   key: db.password
           ports:
             - name: http
