@@ -79,15 +79,15 @@ public class CalculateTripFeesSteps {
 
         @Override
         public Trip findTripByDestination(Destination destination) {
-            if (destination.name().equals("Sydney")) {
-                return Trip.Builder.MISSING_DESTINATION;
-            } else {
-                return new Trip.Builder().with(builder -> {
-                    builder.setAgencyFees(this.calculateTripFeesSteps.agencyFees);
-                    builder.setStayFees(this.calculateTripFeesSteps.stayFees);
-                    builder.setTicketPrice(this.calculateTripFeesSteps.ticketPrice);
-                }).build();
-            }
+            return (destination.name().equals("Sydney")) ? Trip.Builder.MISSING_DESTINATION : trip();
+        }
+
+        private Trip trip() {
+            return new Trip.Builder().with(builder -> {
+                builder.setAgencyFees(this.calculateTripFeesSteps.agencyFees);
+                builder.setStayFees(this.calculateTripFeesSteps.stayFees);
+                builder.setTicketPrice(this.calculateTripFeesSteps.ticketPrice);
+            }).build();
         }
     }
 }
