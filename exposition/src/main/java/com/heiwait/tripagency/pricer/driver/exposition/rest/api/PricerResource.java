@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/pricer")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PricerResource {
     private final TripPricerService tripPricer;
 

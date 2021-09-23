@@ -39,6 +39,11 @@ spec:
                 configMapKeyRef:
                   name: trippricer-config
                   key: api.url
+            - name: ACCESS_CONTROL_AllOW_ORIGIN
+              valueFrom:
+                configMapKeyRef:
+                  name: trippricer-config
+                  key: access.control.allow.origin
             - name: DB_URL
               valueFrom:
                 configMapKeyRef:
