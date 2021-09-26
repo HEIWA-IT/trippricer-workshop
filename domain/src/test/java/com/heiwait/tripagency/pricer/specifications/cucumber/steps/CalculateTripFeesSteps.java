@@ -83,11 +83,13 @@ public class CalculateTripFeesSteps {
         }
 
         private Trip trip() {
-            return new Trip.Builder().with(builder -> {
-                builder.setAgencyFees(this.calculateTripFeesSteps.agencyFees);
-                builder.setStayFees(this.calculateTripFeesSteps.stayFees);
-                builder.setTicketPrice(this.calculateTripFeesSteps.ticketPrice);
-            }).build();
+            return new Trip.Builder().with(this::accept).build();
+        }
+
+        private void accept(Trip.Builder builder) {
+            builder.setAgencyFees(this.calculateTripFeesSteps.agencyFees);
+            builder.setStayFees(this.calculateTripFeesSteps.stayFees);
+            builder.setTicketPrice(this.calculateTripFeesSteps.ticketPrice);
         }
     }
 }
