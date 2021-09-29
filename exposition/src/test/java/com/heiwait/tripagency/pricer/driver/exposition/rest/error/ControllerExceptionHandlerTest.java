@@ -2,7 +2,7 @@ package com.heiwait.tripagency.pricer.driver.exposition.rest.error;
 
 import com.heiwait.tripagency.pricer.domain.Destination;
 import com.heiwait.tripagency.pricer.domain.TravelClass;
-import com.heiwait.tripagency.pricer.driver.exposition.rest.api.TripPricerService;
+import com.heiwait.tripagency.pricer.application.TripPricerService;
 import io.restassured.RestAssured;
 import org.json.JSONException;
 import org.json.JSONObject;

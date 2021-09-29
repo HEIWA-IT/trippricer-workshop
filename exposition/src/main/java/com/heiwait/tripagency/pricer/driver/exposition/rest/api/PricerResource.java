@@ -1,5 +1,6 @@
 package com.heiwait.tripagency.pricer.driver.exposition.rest.api;
 
+import com.heiwait.tripagency.pricer.application.TripPricerService;
 import com.heiwait.tripagency.pricer.domain.Destination;
 import com.heiwait.tripagency.pricer.domain.TravelClass;
 import io.swagger.annotations.ApiOperation;

@@ -1,4 +1,4 @@
-package com.heiwait.tripagency.pricer.driver.exposition.rest.api;
+package com.heiwait.tripagency.pricer.application;
 
 import com.heiwait.tripagency.pricer.domain.TripPricer;
 import com.heiwait.tripagency.pricer.domain.TripRepositoryPort;

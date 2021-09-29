@@ -30,6 +30,11 @@
             <artifactId>repository</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.heiwait.tripagency.pricer</groupId>
+            <artifactId>application</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
