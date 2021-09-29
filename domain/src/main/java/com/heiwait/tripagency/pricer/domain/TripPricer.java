@@ -20,7 +20,7 @@ public class TripPricer implements PriceComputorDriverPort {
         return priceTrip(travelClass, trip);
     }
 
-    private int priceTrip(TravelClass travelClass, Trip trip) {
+    private Integer priceTrip(TravelClass travelClass, Trip trip) {
         if (Trip.Builder.MISSING_DESTINATION.equals(trip)) {
             throw new BusinessException(BusinessErrors.MISSING_DESTINATION);
         }

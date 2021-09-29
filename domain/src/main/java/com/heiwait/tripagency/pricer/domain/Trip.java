@@ -28,7 +28,7 @@ public class Trip {
         return stayFees;
     }
 
-    public int ticketPrice() {
+    public Integer ticketPrice() {
         return ticketPrice;
     }
 
