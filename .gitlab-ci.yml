@@ -60,17 +60,14 @@ setup:
     - |
       ./pipeline/scripts/1_setup/check_pipeline_variables.sh
 
-      VERSION=$(git describe --tags --always)
-      echo "VERSION ${VERSION}"
       COMMIT_BRANCH=${CI_COMMIT_BRANCH}
       echo "COMMIT_BRANCH ${COMMIT_BRANCH}"
 
       echo "Generating versions to use now:"
-
-      ARTIFACT_VERSION=$(./pipeline/scripts/1_setup/determine_version.sh "${COMMIT_BRANCH}" "${VERSION}")
+      ARTIFACT_VERSION=$(./pipeline/scripts/1_setup/determine_version.sh "${COMMIT_BRANCH}")
       echo "ARTIFACT_VERSION ${ARTIFACT_VERSION}"
 
-      CONTAINER_VERSION=$(./pipeline/scripts/1_setup/determine_container_version.sh "${COMMIT_BRANCH}" "${VERSION}")
+      CONTAINER_VERSION=$(./pipeline/scripts/1_setup/determine_container_version.sh "${COMMIT_BRANCH}" "${ARTIFACT_VERSION}")
       echo "CONTAINER_VERSION ${CONTAINER_VERSION}"
 
       CONTAINER_IMAGE="${DOCKER_PROJECT_REGISTRY}/${APP_NAME}-exposition:${CONTAINER_VERSION}"

@@ -37,7 +37,6 @@
 ################################################################################
 
 BRANCH_NAME=$1
-VERSION=$2
 ###################################################
 # determine if the artifact to build is a snapshot or a release type
 # Outputs:
@@ -46,6 +45,8 @@ VERSION=$2
 #   1 if a problem occurred else 0
 ####################################################
 function determine_versions() {
+  VERSION="$(git describe --tags --always)"
+
   if [[ "${BRANCH_NAME}" != "master" ]] && [[ "${BRANCH_NAME}" != "release"* ]] ;
   then
     VERSION="${VERSION}-SNAPSHOT"
