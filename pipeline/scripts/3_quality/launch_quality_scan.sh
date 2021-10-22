@@ -51,8 +51,8 @@ BRANCH_NAME=$2
 function launch_quality_scan() {
   sonar-scanner -Dsonar.host.url=${SONARQUBE_URL} \
     -Dsonar.login=${SONARQUBE_CREDENTIALS} \
-    -Dsonar.projectVersion=${ARTIFACT_VERSION}
-    #-Dsonar.branch.name=${BRANCH_NAME}
+    -Dsonar.projectVersion=${ARTIFACT_VERSION}  \
+    -Dsonar.branch.name=${BRANCH_NAME}
 }
 
 ################################################################################
