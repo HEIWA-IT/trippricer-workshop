@@ -65,6 +65,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+        </dependency>
+
         <!--Jacoco required at runtime to build offline coverages-->
         <dependency>
             <groupId>org.jacoco</groupId>

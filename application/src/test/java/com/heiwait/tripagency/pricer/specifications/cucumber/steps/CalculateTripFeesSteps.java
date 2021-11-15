@@ -3,13 +3,14 @@ package com.heiwait.tripagency.pricer.specifications.cucumber.steps;
 import com.heiwait.tripagency.pricer.domain.Destination;
 import com.heiwait.tripagency.pricer.domain.PriceComputorDriverPort;
 import com.heiwait.tripagency.pricer.domain.TravelClass;
-import com.heiwait.tripagency.pricer.domain.error.BusinessException;
+import com.heiwait.tripagency.pricer.domain.error.BusinessErrors;
 import com.heiwait.tripagency.pricer.specifications.cucumber.ErrorMessagesProperties;
 import com.heiwait.tripagency.pricer.specifications.cucumber.config.AppConfig;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
+import io.vavr.control.Either;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -32,9 +33,8 @@ public class CalculateTripFeesSteps {
     protected Integer stayFees;
     protected Integer ticketPrice;
 
-    private Integer computedPrice;
+    private Either<BusinessErrors, Integer> computedPriceEither;
     private String errorMessage;
-
 
     @Given("^the customer wants to travel to \"([^\"]*)\"$")
     public void the_customer_wants_to_travel_to(String dest) {
@@ -63,18 +63,18 @@ public class CalculateTripFeesSteps {
 
     @When("^the customer asked for the trip price")
     public void the_customer_asked_for_the_trip_price() {
-        try {
-            computedPrice = tripPricer.priceTrip(destination, travelClass);
-        } catch (BusinessException be) {
+        computedPriceEither = tripPricer.priceTrip(destination, travelClass);
+
+        if (computedPriceEither.isLeft()){
             Locale usLocale = new Locale("en", "US");
             Locale.setDefault(usLocale);
-            errorMessage = ErrorMessagesProperties.getErrorMessageFromErrorCode(be.error().code());
+            errorMessage = ErrorMessagesProperties.getErrorMessageFromErrorCode(computedPriceEither.getLeft().code());
         }
     }
 
     @Then("^the trip price is (\\d+)€$")
     public void the_trip_price_is_€(Integer expectedPrice) {
-        assertThat(expectedPrice).isEqualTo(computedPrice);
+        assertThat(expectedPrice).isEqualTo(computedPriceEither.get());
     }
 
     @Then("^the trip price returns the following message \"([^\"]*)\"$")

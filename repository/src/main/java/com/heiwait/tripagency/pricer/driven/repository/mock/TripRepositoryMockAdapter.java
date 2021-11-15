@@ -3,6 +3,8 @@ package com.heiwait.tripagency.pricer.driven.repository.mock;
 import com.heiwait.tripagency.pricer.domain.Destination;
 import com.heiwait.tripagency.pricer.domain.Trip;
 import com.heiwait.tripagency.pricer.domain.TripRepositoryPort;
+import com.heiwait.tripagency.pricer.domain.error.BusinessErrors;
+import io.vavr.control.Either;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
@@ -52,9 +54,12 @@ public class TripRepositoryMockAdapter implements TripRepositoryPort {
     );
 
     @Override
-    public Trip findTripByDestination(final Destination destination) {
+    public Either<BusinessErrors, Trip> findTripByDestination(final Destination destination) {
         Trip findedTrip = trips.get(destination.name().toLowerCase());
 
-        return Objects.requireNonNullElse(findedTrip, Trip.Builder.MISSING_DESTINATION);
+        if(findedTrip == null)
+            return Either.left(BusinessErrors.MISSING_DESTINATION);
+
+        return Either.right(findedTrip);
     }
 }

@@ -1,7 +1,7 @@
 package com.heiwait.tripagency.pricer.domain;
 
 import com.heiwait.tripagency.pricer.domain.error.BusinessErrors;
-import com.heiwait.tripagency.pricer.domain.error.BusinessException;
+import io.vavr.control.Either;
 
 public class TripPricer implements PriceComputorDriverPort {
 
@@ -12,24 +12,17 @@ public class TripPricer implements PriceComputorDriverPort {
     }
 
     @Override
-    public Integer priceTrip(final Destination destination, final TravelClass travelClass) {
-        checkDestination(destination);
+    public Either<BusinessErrors, Integer> priceTrip(final Destination destination, final TravelClass travelClass) {
+        Either<BusinessErrors, Trip> tripEither = tripRepository.findTripByDestination(destination);
 
-        Trip trip = tripRepository.findTripByDestination(destination);
+        if(tripEither.isLeft()) {
+            return Either.left(tripEither.getLeft());
+        }
 
-        return priceTrip(travelClass, trip);
+        return Either.right(priceTrip(travelClass, tripEither.get()));
     }
 
     private Integer priceTrip(TravelClass travelClass, Trip trip) {
-        if (Trip.Builder.MISSING_DESTINATION.equals(trip)) {
-            throw new BusinessException(BusinessErrors.MISSING_DESTINATION);
-        }
-
         return (trip.ticketPrice() * travelClass.coefficient()) + trip.agencyFees() + trip.stayFees();
-    }
-
-    private void checkDestination(final Destination destination) {
-        if (destination == null)
-            throw new IllegalArgumentException();
     }
 }

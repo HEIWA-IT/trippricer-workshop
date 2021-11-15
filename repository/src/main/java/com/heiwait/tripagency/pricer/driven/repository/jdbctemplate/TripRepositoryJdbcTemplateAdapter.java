@@ -3,6 +3,8 @@ package com.heiwait.tripagency.pricer.driven.repository.jdbctemplate;
 import com.heiwait.tripagency.pricer.domain.Destination;
 import com.heiwait.tripagency.pricer.domain.Trip;
 import com.heiwait.tripagency.pricer.domain.TripRepositoryPort;
+import com.heiwait.tripagency.pricer.domain.error.BusinessErrors;
+import io.vavr.control.Either;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,13 +22,13 @@ public class TripRepositoryJdbcTemplateAdapter implements TripRepositoryPort {
     }
 
     @Override
-    public Trip findTripByDestination(Destination destination) {
+    public Either<BusinessErrors, Trip>  findTripByDestination(Destination destination) {
         String sql = "SELECT destination, agency_fees, stay_fees, ticket_price FROM trip WHERE LOWER(destination) = LOWER(?)";
         RowMapper<Trip> rowMapper = new TripRowMapper();
         try {
-            return jdbcTemplate.queryForObject(sql, rowMapper, destination.name());
+            return Either.right(jdbcTemplate.queryForObject(sql, rowMapper, destination.name()));
         } catch (EmptyResultDataAccessException e) {
-            return Trip.Builder.MISSING_DESTINATION;
+            return Either.left(BusinessErrors.MISSING_DESTINATION);
         }
     }
 }

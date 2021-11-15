@@ -1,11 +1,12 @@
 package com.heiwait.tripagency.pricer.specifications.cucumber.steps;
 
+import com.heiwait.tripagency.pricer.domain.error.BusinessErrors;
 import com.heiwait.tripagency.pricer.specifications.cucumber.ErrorMessagesProperties;
 import com.heiwait.tripagency.pricer.domain.*;
-import com.heiwait.tripagency.pricer.domain.error.BusinessException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.vavr.control.Either;
 
 import java.util.Locale;
 
@@ -21,7 +22,7 @@ public class CalculateTripFeesSteps {
     protected Integer stayFees;
     protected Integer ticketPrice;
 
-    private Integer computedPrice;
+    private Either<BusinessErrors, Integer> computedPriceEither;
     private String errorMessage;
 
     @Given("^the customer wants to travel to \"([^\"]*)\"$")
@@ -51,18 +52,18 @@ public class CalculateTripFeesSteps {
 
     @When("^the customer asked for the trip price")
     public void the_customer_asked_for_the_trip_price() {
-        try {
-            computedPrice = tripPricer.priceTrip(destination, travelClass);
-        } catch (BusinessException be) {
-            Locale usLocale = new Locale("en", "US");
-            Locale.setDefault(usLocale);
-            errorMessage = ErrorMessagesProperties.getErrorMessageFromErrorCode(be.error().code());
-        }
+            computedPriceEither = tripPricer.priceTrip(destination, travelClass);
+
+            if (computedPriceEither.isLeft()){
+                Locale usLocale = new Locale("en", "US");
+                Locale.setDefault(usLocale);
+                errorMessage = ErrorMessagesProperties.getErrorMessageFromErrorCode(computedPriceEither.getLeft().code());
+            }
     }
 
     @Then("^the trip price is (\\d+)€$")
     public void the_trip_price_is_€(Integer expectedPrice) {
-        assertThat(expectedPrice).isEqualTo(computedPrice);
+        assertThat(expectedPrice).isEqualTo(computedPriceEither.get());
     }
 
     @Then("^the trip price returns the following message \"([^\"]*)\"$")
@@ -78,8 +79,8 @@ public class CalculateTripFeesSteps {
         }
 
         @Override
-        public Trip findTripByDestination(Destination destination) {
-            return (destination.name().equals("Sydney")) ? Trip.Builder.MISSING_DESTINATION : trip();
+        public Either<BusinessErrors, Trip> findTripByDestination(Destination destination) {
+            return (destination.name().equals("Sydney")) ? Either.left(BusinessErrors.MISSING_DESTINATION) : Either.right(trip());
         }
 
         private Trip trip() {

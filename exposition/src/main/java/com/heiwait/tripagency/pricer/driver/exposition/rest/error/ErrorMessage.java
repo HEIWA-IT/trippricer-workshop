@@ -4,7 +4,7 @@ public class ErrorMessage {
     private final String code;
     private final String description;
 
-    ErrorMessage(String code, String description) {
+    public ErrorMessage(String code, String description) {
         this.code = code;
         this.description = description;
     }
