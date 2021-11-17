@@ -45,9 +45,9 @@ function launch_e2e_tests() {
   if [[ "${BUILD_TYPE}" = "maven" ]]
   then
      echo "Using Mvnw"
-    ./mvnw versions:set -DnewVersion="${VERSION}" || exit 1
-    ./mvnw -pl e2e test  ${MAVEN_SETTINGS} || exit 1
-    ./mvnw versions:revert || exit 1
+    ./mvnw versions:set -DnewVersion="${VERSION}" ${MAVEN_SETTINGS} || exit 1
+    ./mvnw -pl e2e test  ${MAVEN_SETTINGS} ${MAVEN_SETTINGS} || exit 1
+    ./mvnw versions:revert ${MAVEN_SETTINGS} || exit 1
   elif [[ "${BUILD_TYPE}" = "gradle" ]]
   then
     echo "Using Gradlew"

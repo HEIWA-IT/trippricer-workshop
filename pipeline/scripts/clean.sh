@@ -43,8 +43,8 @@ function clean() {
   if [[ "${BUILD_TYPE}" = "maven" ]]
   then
      echo "Using mvnw"
-    ./mvnw clean || exit 1
-    ./mvnw versions:revert || exit 1
+    ./mvnw clean ${MAVEN_SETTINGS} || exit 1
+    ./mvnw versions:revert ${MAVEN_SETTINGS} || exit 1
   elif [[ "${BUILD_TYPE}" = "gradle" ]]
   then
     echo "Using gradlew"

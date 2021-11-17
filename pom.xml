@@ -38,9 +38,6 @@
 
         <project.build.directory>build</project.build.directory>
 
-        <maven_repository_snapshots></maven_repository_snapshots>
-        <maven_repository_releases></maven_repository_releases>
-
         <jib.version>3.1.2</jib.version>
         <docker.baseImage.name>openjdk</docker.baseImage.name>
         <docker.baseImage.version>17-jdk-slim</docker.baseImage.version>

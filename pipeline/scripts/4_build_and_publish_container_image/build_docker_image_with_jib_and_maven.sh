@@ -45,13 +45,13 @@ MVN_JIB_COMMAND="compile ${MAVEN_SETTINGS} jib:build -pl exposition \
 -Dimage=${CONTAINER_IMAGE} -Djib.console=plain -Djib.httpTimeout=600000 -Djib.allowInsecureRegistries=true"
 
 ################################################################################
-# build_docker_image_with_jib_and_maven                                                                         #
+# build_docker_image_with_jib_and_maven                                        #
 ################################################################################
 function build_docker_image_with_jib_and_maven() {
   echo "Using mvnw"
-  ./mvnw versions:set -DnewVersion="${VERSION}" || exit 1
-  ./mvnw ${MVN_JIB_COMMAND} || exit 1
-  ./mvnw versions:revert || exit 1
+  ./mvnw versions:set -DnewVersion="${VERSION}" ${MAVEN_SETTINGS} || exit 1
+  ./mvnw ${MVN_JIB_COMMAND} ${MAVEN_SETTINGS} || exit 1
+  ./mvnw versions:revert ${MAVEN_SETTINGS} || exit 1
 }
 
 ###################################################
