@@ -34,6 +34,7 @@ variables:
 
 cache:
   paths:
+    - .m2/repository
     - domain/build
     - repository/build
     - application/build
