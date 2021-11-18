@@ -33,8 +33,9 @@ variables:
   COMMIT_BRANCH: ${CI_COMMIT_BRANCH}
 
 cache:
+  key: "$CI_BUILD_REF_NAME"
   paths:
-    - .m2/repository
+    - /builds/paxleones/.m2
     - domain/build
     - repository/build
     - application/build
@@ -98,7 +99,7 @@ build:
       - exposition/build
     expire_in: 1 day
   cache:
-    key: "gradle-cache-key"
+    key: "artifacts-cache-key"
     paths:
       - .gradle/wrapper
       - .gradle/caches
