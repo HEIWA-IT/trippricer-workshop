@@ -52,13 +52,13 @@ public class CalculateTripFeesSteps {
 
     @When("^the customer asked for the trip price")
     public void the_customer_asked_for_the_trip_price() {
-            computedPriceEither = tripPricer.priceTrip(destination, travelClass);
+        computedPriceEither = tripPricer.priceTrip(destination, travelClass);
 
-            if (computedPriceEither.isLeft()){
-                Locale usLocale = new Locale("en", "US");
-                Locale.setDefault(usLocale);
-                errorMessage = ErrorMessagesProperties.getErrorMessageFromErrorCode(computedPriceEither.getLeft().code());
-            }
+        if (computedPriceEither.isLeft()) {
+            Locale usLocale = new Locale("en", "US");
+            Locale.setDefault(usLocale);
+            errorMessage = ErrorMessagesProperties.getErrorMessageFromErrorCode(computedPriceEither.getLeft().code());
+        }
     }
 
     @Then("^the trip price is (\\d+)€$")
@@ -84,13 +84,10 @@ public class CalculateTripFeesSteps {
         }
 
         private Trip trip() {
-            return new Trip.Builder().with(this::accept).build();
-        }
+            return new Trip(this.calculateTripFeesSteps.agencyFees,
+                    this.calculateTripFeesSteps.stayFees,
+                    this.calculateTripFeesSteps.ticketPrice);
 
-        private void accept(Trip.Builder builder) {
-            builder.setAgencyFees(this.calculateTripFeesSteps.agencyFees);
-            builder.setStayFees(this.calculateTripFeesSteps.stayFees);
-            builder.setTicketPrice(this.calculateTripFeesSteps.ticketPrice);
         }
     }
 }

@@ -15,35 +15,11 @@ import java.util.Objects;
 @Qualifier("TripRepositoryMockAdapter")
 public class TripRepositoryMockAdapter implements TripRepositoryPort {
 
-    final Trip lilleTrip = new Trip.Builder().with(builder -> {
-        builder.setTicketPrice(0);
-        builder.setStayFees(0);
-        builder.setAgencyFees(0);
-    }).build();
-
-    final Trip parisTrip = new Trip.Builder().with(builder -> {
-        builder.setTicketPrice(100);
-        builder.setStayFees(800);
-        builder.setAgencyFees(50);
-    }).build();
-
-    final Trip beijingTrip = new Trip.Builder().with(builder -> {
-        builder.setTicketPrice(1000);
-        builder.setStayFees(1000);
-        builder.setAgencyFees(100);
-    }).build();
-
-    final Trip newyorkTrip = new Trip.Builder().with(builder -> {
-        builder.setTicketPrice(800);
-        builder.setStayFees(1000);
-        builder.setAgencyFees(100);
-    }).build();
-
-    final Trip tokyoTrip = new Trip.Builder().with(builder -> {
-        builder.setTicketPrice(1200);
-        builder.setStayFees(1000);
-        builder.setAgencyFees(100);
-    }).build();
+    final Trip lilleTrip = new Trip(0,0, 0);
+    final Trip parisTrip = new Trip(50, 800, 100);
+    final Trip beijingTrip = new Trip (100, 1000,1000);
+    final Trip newyorkTrip = new Trip(100,1000,800);
+    final Trip tokyoTrip = new Trip(100, 1000,1200);
 
     final Map<String, Trip> trips = Map.ofEntries(
             Map.entry("paris", parisTrip),

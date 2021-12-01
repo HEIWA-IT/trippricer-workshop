@@ -20,11 +20,7 @@ public class TripEntity implements Serializable {
     private Integer ticketPrice;
 
     Trip toTrip() {
-        return new Trip.Builder().with(builder -> {
-            builder.setAgencyFees(agencyFees());
-            builder.setStayFees(stayFees());
-            builder.setTicketPrice(ticketPrice());
-        }).build();
+        return new Trip(agencyFees(), stayFees(), ticketPrice());
     }
 
     private Integer agencyFees() {

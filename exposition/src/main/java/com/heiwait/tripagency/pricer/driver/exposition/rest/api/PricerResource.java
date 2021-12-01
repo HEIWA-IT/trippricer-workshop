@@ -23,16 +23,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping(value = "/pricer")
-public class PricerResource {
-    private final TripPricerService tripPricer;
-    private final MessageSource messageSource;
-    private final PropertiesHttpCode propertiesHttpCode;
-
-    public PricerResource(final TripPricerService tripPricer, final MessageSource messageSource, final PropertiesHttpCode propertiesHttpCode) {
-        this.tripPricer = tripPricer;
-        this.messageSource = messageSource;
-        this.propertiesHttpCode = propertiesHttpCode;
-    }
+public record PricerResource(TripPricerService tripPricer, MessageSource messageSource,  PropertiesHttpCode propertiesHttpCode) {
 
     @ApiOperation(value = "Compute travel fees", notes = "Returns the price of a trip")
     @GetMapping(value = {"/{destination}/travelClass/{travelClass}/priceTrip"}, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,9 +34,6 @@ public class PricerResource {
         Either<BusinessErrors, Integer> travelPriceEither = tripPricer.priceTrip(destination, travelClass);
 
         if (travelPriceEither.isLeft()) {
-            Locale usLocale = new Locale("en", "US");
-            Locale.setDefault(usLocale);
-
             BusinessErrors error = travelPriceEither.getLeft();
             String[] params = null;
 
