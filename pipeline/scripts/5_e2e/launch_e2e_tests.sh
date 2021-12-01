@@ -36,6 +36,8 @@
 VERSION=$1
 echo Version: ${VERSION}
 
+MAVEN_GOAL=verify
+echo "MAVEN_GOAL" ${MAVEN_GOAL}
 ################################################################################
 # gradlew                                                                      #
 ################################################################################
@@ -45,9 +47,11 @@ function launch_e2e_tests() {
   if [[ "${BUILD_TYPE}" = "maven" ]]
   then
      echo "Using Mvnw"
-    ./mvnw versions:set -DnewVersion="${VERSION}" ${MAVEN_SETTINGS} || exit 1
-    ./mvnw -pl e2e test  ${MAVEN_SETTINGS} ${MAVEN_SETTINGS} || exit 1
-    ./mvnw versions:revert ${MAVEN_SETTINGS} || exit 1
+    ./mvnw versions:set -DnewVersion="${VERSION}" ${MAVEN_CLI_OPTS} || exit 1
+     echo "Using 2"
+    ./mvnw ${MAVEN_GOAL} ${MAVEN_CLI_OPTS} -pl e2e  || exit 1
+     echo "Using 3"
+    ./mvnw versions:revert ${MAVEN_CLI_OPTS} || exit 1
   elif [[ "${BUILD_TYPE}" = "gradle" ]]
   then
     echo "Using Gradlew"

@@ -49,9 +49,9 @@ MVN_JIB_COMMAND="compile ${MAVEN_SETTINGS} jib:build -pl exposition \
 ################################################################################
 function build_docker_image_with_jib_and_maven() {
   echo "Using mvnw"
-  ./mvnw versions:set -DnewVersion="${VERSION}" ${MAVEN_SETTINGS} || exit 1
-  ./mvnw ${MVN_JIB_COMMAND} ${MAVEN_SETTINGS} || exit 1
-  ./mvnw versions:revert ${MAVEN_SETTINGS} || exit 1
+  ./mvnw versions:set -DnewVersion="${VERSION}" ${MAVEN_CLI_OPTS} || exit 1
+  ./mvnw ${MVN_JIB_COMMAND} -U || exit 1
+  ./mvnw versions:revert ${MAVEN_CLI_OPTS} || exit 1
 }
 
 ###################################################

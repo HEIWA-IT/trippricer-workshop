@@ -36,7 +36,6 @@
 ARTIFACT_VERSION=$1
 echo ARTIFACT_VERSION: "${ARTIFACT_VERSION}"
 echo MAVEN_GOAL: "${MAVEN_GOAL}"
-echo MAVEN_SETTINGS: "${MAVEN_SETTINGS}"
 echo MAVEN_CLI_OPTS: "${MAVEN_CLI_OPTS}"
 
 ################################################################################
@@ -45,9 +44,9 @@ echo MAVEN_CLI_OPTS: "${MAVEN_CLI_OPTS}"
 function build()
 {
   echo "Using mvnw"
-  ./mvnw versions:set -DnewVersion="${ARTIFACT_VERSION}" ${MAVEN_SETTINGS} || exit 1
-  ./mvnw ${MAVEN_GOAL} ${MAVEN_SETTINGS} ${MAVEN_CLI_OPTS} ${MAVEN_OPTS}  || exit 1
-  ./mvnw versions:revert ${MAVEN_SETTINGS} || exit 1
+  ./mvnw versions:set -DnewVersion="${ARTIFACT_VERSION}" ${MAVEN_CLI_OPTS}  || exit 1
+  ./mvnw ${MAVEN_GOAL} ${MAVEN_CLI_OPTS} -pl !e2e -fn || exit 1
+  ./mvnw versions:revert ${MAVEN_CLI_OPTS}  || exit 1
 }
 
 ################################################################################
