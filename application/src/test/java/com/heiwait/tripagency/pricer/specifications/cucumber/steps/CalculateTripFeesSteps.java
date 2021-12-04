@@ -4,7 +4,7 @@ import com.heiwait.tripagency.pricer.domain.Destination;
 import com.heiwait.tripagency.pricer.domain.PriceComputorDriverPort;
 import com.heiwait.tripagency.pricer.domain.TravelClass;
 import com.heiwait.tripagency.pricer.domain.error.BusinessErrors;
-import com.heiwait.tripagency.pricer.specifications.cucumber.ErrorMessagesProperties;
+import com.heiwait.tripagency.pricer.domain.error.ErrorMessagesProperties;
 import com.heiwait.tripagency.pricer.specifications.cucumber.config.AppConfig;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

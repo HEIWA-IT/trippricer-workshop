@@ -1,7 +1,7 @@
 package com.heiwait.tripagency.pricer.specifications.cucumber.steps;
 
 import com.heiwait.tripagency.pricer.domain.error.BusinessErrors;
-import com.heiwait.tripagency.pricer.specifications.cucumber.ErrorMessagesProperties;
+import com.heiwait.tripagency.pricer.domain.error.ErrorMessagesProperties;
 import com.heiwait.tripagency.pricer.domain.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

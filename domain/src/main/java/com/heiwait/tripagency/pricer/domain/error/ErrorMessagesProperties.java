@@ -1,11 +1,10 @@
-package com.heiwait.tripagency.pricer.specifications.cucumber;
+package com.heiwait.tripagency.pricer.domain.error;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ErrorMessagesProperties {
     private static final String FILENAME = "messages";
-    private final static ResourceBundle rb = ResourceBundle.getBundle(FILENAME);
+    private static final ResourceBundle rb = ResourceBundle.getBundle(FILENAME);
 
     private ErrorMessagesProperties() {
     }
