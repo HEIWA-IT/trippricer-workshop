@@ -3,6 +3,7 @@ package com.heiwait.tripagency.pricer.specifications.cucumber.steps;
 import com.heiwait.tripagency.pricer.domain.error.BusinessErrors;
 import com.heiwait.tripagency.pricer.domain.error.ErrorMessagesProperties;
 import com.heiwait.tripagency.pricer.domain.*;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -24,6 +25,12 @@ public class CalculateTripFeesSteps {
 
     private Either<BusinessErrors, Integer> computedPriceEither;
     private String errorMessage;
+
+    @Before
+    public void setUp() {
+        Locale usLocale = new Locale("en", "US");
+        Locale.setDefault(usLocale);
+    }
 
     @Given("^the customer wants to travel to \"([^\"]*)\"$")
     public void the_customer_wants_to_travel_to(String dest) {
@@ -55,8 +62,6 @@ public class CalculateTripFeesSteps {
         computedPriceEither = tripPricer.priceTrip(destination, travelClass);
 
         if (computedPriceEither.isLeft()) {
-            Locale usLocale = new Locale("en", "US");
-            Locale.setDefault(usLocale);
             errorMessage = ErrorMessagesProperties.getErrorMessageFromErrorCode(computedPriceEither.getLeft().code());
         }
     }
