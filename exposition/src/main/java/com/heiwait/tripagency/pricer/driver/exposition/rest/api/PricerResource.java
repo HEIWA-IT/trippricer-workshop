@@ -23,7 +23,17 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping(value = "/pricer")
-public record PricerResource(TripPricerService tripPricer, MessageSource messageSource,  PropertiesHttpCode propertiesHttpCode) {
+public class PricerResource {
+
+    private final TripPricerService tripPricer;
+    private final MessageSource messageSource;
+    private final PropertiesHttpCode propertiesHttpCode;
+
+    public PricerResource(final TripPricerService tripPricer, final MessageSource messageSource, final PropertiesHttpCode propertiesHttpCode) {
+        this.tripPricer = tripPricer;
+        this.messageSource = messageSource;
+        this.propertiesHttpCode = propertiesHttpCode;
+    }
 
     @ApiOperation(value = "Compute travel fees", notes = "Returns the price of a trip")
     @GetMapping(value = {"/{destination}/travelClass/{travelClass}/priceTrip"}, produces = MediaType.APPLICATION_JSON_VALUE)
