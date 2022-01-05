@@ -32,27 +32,27 @@ public class CalculateTripFeesSteps {
         Locale.setDefault(usLocale);
     }
 
-    @Given("the customer wants to travel to {string}")
+    @Given("^the customer wants to travel to \"([^\"]*)\"$")
     public void the_customer_wants_to_travel_to(String dest) {
         destination = new Destination(dest);
     }
 
-    @Given("the customer wants to travel in {string} class")
+    @Given("^the customer wants to travel in \"([^\"]*)\" class$")
     public void the_customer_wants_to_travel_in_class(TravelClass travelClass) {
         this.travelClass = travelClass;
     }
 
-    @Given("the economic travel ticket price is {int}€")
+    @Given("^the economic travel ticket price is (\\d+)€$")
     public void the_economic_travel_ticket_price_is_€(int ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
 
-    @Given("the stay fees are {int}€")
+    @Given("^the stay fees are (\\d+)€$")
     public void the_stay_fees_are_€(Integer stayFees) {
         this.stayFees = stayFees;
     }
 
-    @Given("the agency fees are {int}€")
+    @Given("^the agency fees are (\\d+)€$")
     public void the_agency_fees_are_€(Integer agencyFees) {
         this.agencyFees = agencyFees;
     }
@@ -66,12 +66,12 @@ public class CalculateTripFeesSteps {
         }
     }
 
-    @Then("the trip price is {int}€")
+    @Then("^the trip price is (\\d+)€$")
     public void the_trip_price_is_€(Integer expectedPrice) {
         assertThat(expectedPrice).isEqualTo(computedPriceEither.get());
     }
 
-    @Then("the trip price returns the following message {string}")
+    @Then("^the trip price returns the following message \"([^\"]*)\"$")
     public void the_trip_price_returns_the_following_message(String expectedMessage) {
         assertThat(expectedMessage).isEqualTo(errorMessage);
     }
@@ -92,6 +92,7 @@ public class CalculateTripFeesSteps {
             return new Trip(this.calculateTripFeesSteps.agencyFees,
                     this.calculateTripFeesSteps.stayFees,
                     this.calculateTripFeesSteps.ticketPrice);
+
         }
     }
 }
