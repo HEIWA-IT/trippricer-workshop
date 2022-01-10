@@ -53,6 +53,11 @@ generate_living_documentation_for_e2e :
 stop_exposition :
 	./pipeline/scripts/5_e2e/stop_exposition.sh
 
+# update dependencies versions
+updating_versions :
+	./pipeline/scripts/update_versions.sh
+.PHONY: updating_versions
+
 # clean
 clean :
 	./pipeline/scripts/clean.sh "${BUILD_TYPE}"
