@@ -22,8 +22,6 @@ public class CalculateTripFeesSteps {
     private String travelClass;
     private Response response;
 
-    String BASE_URL;
-
     @Before
     public void setup() {
         Locale usLocale = new Locale("en", "US");
