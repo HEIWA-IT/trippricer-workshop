@@ -30,7 +30,7 @@
         <cucumber-spring.version>6.10.4</cucumber-spring.version>
         <jacoco.version>0.8.7</jacoco.version>
         <java-rest-project.version>1.4.2</java-rest-project.version>
-        <spring-boot.version>2.5.0</spring-boot.version>
+        <spring-boot.version>2.6.3</spring-boot.version>
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
@@ -38,7 +38,7 @@
 
         <project.build.directory>build</project.build.directory>
 
-        <jib.version>3.1.4</jib.version>
+        <jib.version>3.2.0</jib.version>
         <docker.baseImage.name>openjdk</docker.baseImage.name>
         <docker.baseImage.version>17-jdk-slim</docker.baseImage.version>
         <docker.registry.username></docker.registry.username>
@@ -65,10 +65,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>io.vavr</groupId>
-            <artifactId>vavr</artifactId>
-        </dependency>
 
         <!--Jacoco required at runtime to build offline coverages-->
         <dependency>
