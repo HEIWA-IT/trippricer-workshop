@@ -107,7 +107,7 @@ build:
 
 code_analysis:
   stage: quality
-  image: sonarsource/sonar-scanner-cli:4.6
+  image: sonarsource/sonar-scanner-cli:4.7
   needs:
     - job: build
     - job: setup
