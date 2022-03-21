@@ -73,8 +73,6 @@ public class CalculateTripFeesSteps {
         computedPriceEither = tripPricer.priceTrip(destination, travelClass);
 
         if (computedPriceEither.isLeft()){
-            Locale usLocale = new Locale("en", "US");
-            Locale.setDefault(usLocale);
             errorMessage = ErrorMessagesProperties.getErrorMessageFromErrorCode(computedPriceEither.getLeft().code());
         }
     }
