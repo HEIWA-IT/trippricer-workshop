@@ -8,7 +8,7 @@ DOCKER_IMAGE := "${DOCKER_PROJECT_REGISTRY}/${APP_NAME}-exposition:${CONTAINER_V
 all : 	ci e2e clean
 .PHONY: all
 
-ci : 	setup build build_and_publish_container_image launch_quality_scan generate_living_documentation_for_domain
+ci : 	setup build
 .PHONY: ci
 
 e2e : 	setup deploy_to_kubernetes launch_e2e_tests delete_deployment_from_kubernetes generate_living_documentation_for_e2e
@@ -16,6 +16,10 @@ e2e : 	setup deploy_to_kubernetes launch_e2e_tests delete_deployment_from_kubern
 
 setup :  check
 .PHONY: setup
+
+start_exposition_locally :
+	./pipeline/scripts/start_exposition_locally.sh
+.PHONY: start_exposition_locally
 
 # setup
 check :

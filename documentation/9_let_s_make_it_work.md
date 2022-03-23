@@ -45,7 +45,7 @@ export SONARQUBE_URL={{SONARQUBE_URL}}
 - the **./pipelines/.project.env** can ovverride the value of the .development.env if it suits you better.  
 
 
-  **./pipelines/.project.enve**:
+  **./pipelines/.project.env**:
 ```
 ############################### DEVELOPMENT COMMONS VARIABLE ################################
 ###############  This variables are define in the $(HOME)/.development.env file in principle. ###########
@@ -116,7 +116,7 @@ After that, you clean it by executing the **make clean** command.
 
 ### Launching locally your rest api
 you can start the rest exposition by executing the following command line in the exposition folder:  
-**./mvnw clean spring-boot:run**
+**./mvnw clean -Dmaven.test.skip=true -DskipTests spring-boot:run**
 
 The url to display the swagger page is the following:  
 **http://localhost:12378/tripagency/api/swagger-ui/**
