@@ -42,35 +42,35 @@ public class CalculateTripFeesSteps {
         RestAssured.port = port;
     }
 
-    @Given("^the customer wants to travel to \"([^\"]*)\"$")
+    @Given("the customer wants to travel to {string}")
     public void the_customer_wants_to_travel_to(String dest) {
         destination = dest;
     }
 
-    @Given("^the customer wants to travel in \"([^\"]*)\" class$")
+    @Given("the customer wants to travel in {} class")
     public void the_customer_wants_to_travel_in_class(String travelClass) {
         this.travelClass = travelClass;
     }
 
-    @Given("^the economic travel ticket price is (\\d+)€$")
+    @Given("the economic travel ticket price is {int}€")
     public void the_economic_travel_ticket_price_is_€(int ticketPrice) {
     }
 
-    @Given("^the stay fees are (\\d+)€$")
+    @Given("the stay fees are {int}€")
     public void the_stay_fees_are_€(Integer stayFees) {
     }
 
-    @Given("^the agency fees are (\\d+)€$")
+    @Given("the agency fees are {int}€")
     public void the_agency_fees_are_€(Integer agencyFees) {
     }
 
-    @When("^the customer asked for the trip price")
+    @When("the customer asked for the trip price")
     public void the_customer_asked_for_the_trip_price() {
         String urlTemplate = "/tripagency/api/pricer/" + destination + "/travelClass/" + travelClass + "/priceTrip";
         response = given().basePath(urlTemplate).get("");
     }
 
-    @Then("^the trip price is (\\d+)€$")
+    @Then("the trip price is {int}€")
     public void the_trip_price_is_€(Integer expectedPrice) {
         String computedPriceAsString =
                 response.then().statusCode(HttpURLConnection.HTTP_OK).and().extract().response().asString();
@@ -80,7 +80,7 @@ public class CalculateTripFeesSteps {
         assertThat(expectedPrice).isEqualTo(computedPrice);
     }
 
-    @Then("^the trip price returns the following message \"([^\"]*)\"$")
+    @Then("the trip price returns the following message {string}")
     public void the_trip_price_returns_the_following_message(String expectedMessage){
         String responseAsString =
                 response.then().statusCode(HttpURLConnection.HTTP_NOT_FOUND).and().extract().response().asString();
