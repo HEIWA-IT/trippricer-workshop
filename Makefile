@@ -17,8 +17,8 @@ e2e : 	setup deploy_to_kubernetes launch_e2e_tests delete_deployment_from_kubern
 setup :  check
 .PHONY: setup
 
-start_exposition_locally :
-	./pipeline/scripts/start_exposition_locally.sh
+start_exposition_locally : setup
+	./pipeline/scripts/start_exposition_locally.sh "${ARTIFACT_VERSION}"
 .PHONY: start_exposition_locally
 
 # setup

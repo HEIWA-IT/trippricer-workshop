@@ -34,11 +34,13 @@
 ################################################################################
 ################################################################################
 
-
+ARTIFACT_VERSION=$1
+echo ARTIFACT_VERSION: "${ARTIFACT_VERSION}"
 #######################################
 # start the exposition application
 #######################################
 function start_exposition_locally() {
+    ./mvnw versions:set -DnewVersion="${ARTIFACT_VERSION}" ${MAVEN_CLI_OPTS}  || exit 1
   cd exposition
   ../mvnw clean -Dmaven.test.skip=true -DskipTests spring-boot:run
 }
