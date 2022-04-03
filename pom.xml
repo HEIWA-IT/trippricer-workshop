@@ -29,8 +29,8 @@
         <byte-buddy.version>1.11.2</byte-buddy.version>
         <cucumber-spring.version>6.10.4</cucumber-spring.version>
         <jacoco.version>0.8.7</jacoco.version>
-        <java-rest-project.version>1.4.6</java-rest-project.version>
-        <spring-boot.version>2.6.3</spring-boot.version>
+        <java-rest-project.version>1.4.7</java-rest-project.version>
+        <spring-boot.version>2.6.6</spring-boot.version>
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>

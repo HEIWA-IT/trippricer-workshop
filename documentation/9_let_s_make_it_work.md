@@ -119,7 +119,7 @@ you can start the rest exposition by executing the following command line in the
 **./mvnw clean -Dmaven.test.skip=true -DskipTests spring-boot:run**
 
 The url to display the swagger page is the following:  
-**http://localhost:12378/tripagency/api/swagger-ui/**
+**http://localhost:12378/tripagency/api/swagger-ui/index.html**
 
 ### Consulting the H2 DB
 Connect to this url:
