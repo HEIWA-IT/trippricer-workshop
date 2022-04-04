@@ -26,7 +26,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
 
-        <byte-buddy.version>1.11.2</byte-buddy.version>
         <cucumber-spring.version>6.10.4</cucumber-spring.version>
         <jacoco.version>0.8.7</jacoco.version>
         <java-rest-project.version>1.4.8</java-rest-project.version>
@@ -84,7 +83,6 @@
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
-            <version>${byte-buddy.version}</version>
         </dependency>
 
         <dependency>
