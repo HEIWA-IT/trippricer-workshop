@@ -38,7 +38,7 @@
 
         <project.build.directory>build</project.build.directory>
 
-        <jib.version>3.2.0</jib.version>
+        <jib.version>3.2.1</jib.version>
         <docker.baseImage.name>openjdk</docker.baseImage.name>
         <docker.baseImage.version>17-jdk-slim</docker.baseImage.version>
         <docker.registry.username></docker.registry.username>
