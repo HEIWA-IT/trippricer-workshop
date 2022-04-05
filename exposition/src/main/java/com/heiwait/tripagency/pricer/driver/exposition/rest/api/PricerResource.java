@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Locale;
 import java.util.Objects;
 
 @RestController
@@ -44,14 +43,16 @@ public class PricerResource {
         Either<BusinessErrors, Integer> travelPriceEither = tripPricer.priceTrip(destination, travelClass);
 
         if (travelPriceEither.isLeft()) {
-            BusinessErrors error = travelPriceEither.getLeft();
-            String[] params = null;
-
-            String description = messageSource.getMessage(error.code(), params, error.code(), LocaleContextHolder.getLocale());
-            HttpStatus httpStatus = HttpStatus.resolve(propertiesHttpCode.getHttpCodeFromErrorCode(error.code()));
-            return new ResponseEntity<>(new ErrorMessage(error.code(), description), Objects.requireNonNullElse(httpStatus, HttpStatus.NOT_ACCEPTABLE));
+            return processErrorMessage(travelPriceEither.getLeft());
         }
 
         return new ResponseEntity<>(travelPriceEither.get(), HttpStatus.OK);
+    }
+
+    private ResponseEntity<ErrorMessage> processErrorMessage(BusinessErrors error) {
+        String[] params = null;
+        String description = messageSource.getMessage(error.code(), params, error.code(), LocaleContextHolder.getLocale());
+        HttpStatus httpStatus = HttpStatus.resolve(propertiesHttpCode.getHttpCodeFromErrorCode(error.code()));
+        return new ResponseEntity<>(new ErrorMessage(error.code(), description), Objects.requireNonNullElse(httpStatus, HttpStatus.NOT_ACCEPTABLE));
     }
 }
