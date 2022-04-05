@@ -28,7 +28,7 @@ public class CalculateTripFeesSteps {
         Locale.setDefault(usLocale);
 
         Map<String, String> env = System.getenv();
-        RestAssured.baseURI = env.get("API_BASE_URL");;
+        RestAssured.baseURI = env.get("API_BASE_URL");
     }
 
     @Given("the customer wants to travel to {string}")

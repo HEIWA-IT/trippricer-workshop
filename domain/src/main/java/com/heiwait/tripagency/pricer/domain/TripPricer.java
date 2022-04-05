@@ -5,7 +5,7 @@ import io.vavr.control.Either;
 
 public class TripPricer implements PriceComputorDriverPort {
 
-    protected TripRepositoryPort tripRepository;
+    protected final TripRepositoryPort tripRepository;
 
     public TripPricer(final TripRepositoryPort tripRepository) {
         this.tripRepository = tripRepository;

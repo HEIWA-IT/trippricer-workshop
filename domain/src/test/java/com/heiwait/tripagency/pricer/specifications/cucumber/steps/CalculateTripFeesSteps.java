@@ -83,7 +83,7 @@ public class CalculateTripFeesSteps {
     }
 
     public static class FakeTripRepository implements TripRepositoryPort {
-        CalculateTripFeesSteps calculateTripFeesSteps;
+        final CalculateTripFeesSteps calculateTripFeesSteps;
 
         public FakeTripRepository(CalculateTripFeesSteps calculateTripFeesSteps) {
             this.calculateTripFeesSteps = calculateTripFeesSteps;
