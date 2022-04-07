@@ -71,16 +71,6 @@
             <artifactId>org.jacoco.agent</artifactId>
             <classifier>runtime</classifier>
         </dependency>
-
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.cukedoctor</groupId>
-            <artifactId>cukedoctor-main</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
