@@ -1,0 +1,1 @@
+CREATE TABLE TRIP (Destination Varchar(255), Agency_fees int, Stay_fees int, Ticket_price int);

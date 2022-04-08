@@ -1,0 +1,1 @@
+CREATE TABLE DESTINATION (Name Varchar(255));
