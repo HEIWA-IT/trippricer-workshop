@@ -27,7 +27,7 @@
         <java.version>17</java.version>
 
         <jacoco.version>0.8.7</jacoco.version>
-        <java-rest-project.version>1.4.9</java-rest-project.version>
+        <java-rest-project.version>1.4.10</java-rest-project.version>
         <spring-boot.version>2.6.6</spring-boot.version>
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
