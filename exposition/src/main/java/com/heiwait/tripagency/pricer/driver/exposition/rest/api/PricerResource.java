@@ -6,7 +6,7 @@ import com.heiwait.tripagency.pricer.domain.TravelClass;
 import com.heiwait.tripagency.pricer.domain.error.BusinessErrors;
 import com.heiwait.tripagency.pricer.driver.exposition.rest.error.ErrorMessage;
 import com.heiwait.tripagency.pricer.driver.exposition.rest.error.PropertiesHttpCode;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import io.vavr.control.Either;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -34,7 +34,7 @@ public class PricerResource {
         this.propertiesHttpCode = propertiesHttpCode;
     }
 
-    @ApiOperation(value = "Compute travel fees", notes = "Returns the price of a trip")
+    @Operation(summary = "Compute travel fees", description = "Returns the price of a trip")
     @GetMapping(value = {"/{destination}/travelClass/{travelClass}/priceTrip"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> priceTrip(
             @PathVariable(value = "destination") String destinationName,
