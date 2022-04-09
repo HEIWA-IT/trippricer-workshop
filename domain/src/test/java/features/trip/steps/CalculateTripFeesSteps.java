@@ -82,12 +82,7 @@ public class CalculateTripFeesSteps {
         assertThat(expectedMessage).isEqualTo(errorMessage);
     }
 
-    public static class FakeTripRepository implements TripRepositoryPort {
-        final CalculateTripFeesSteps calculateTripFeesSteps;
-
-        public FakeTripRepository(CalculateTripFeesSteps calculateTripFeesSteps) {
-            this.calculateTripFeesSteps = calculateTripFeesSteps;
-        }
+    public record FakeTripRepository(CalculateTripFeesSteps calculateTripFeesSteps) implements TripRepositoryPort {
 
         @Override
         public Either<BusinessErrors, Trip> findTripByDestination(Destination destination) {
@@ -98,7 +93,6 @@ public class CalculateTripFeesSteps {
             return new Trip(this.calculateTripFeesSteps.agencyFees,
                     this.calculateTripFeesSteps.stayFees,
                     this.calculateTripFeesSteps.ticketPrice);
-
         }
     }
 }
