@@ -27,12 +27,12 @@
         <java.version>17</java.version>
 
         <jacoco.version>0.8.8</jacoco.version>
-        <java-rest-project.version>1.4.10</java-rest-project.version>
+        <java-rest-project.version>1.4.11</java-rest-project.version>
         <spring-boot.version>2.6.6</spring-boot.version>
 
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M6</maven-surefire-plugin.version>
 
         <project.build.directory>build</project.build.directory>
 
@@ -83,8 +83,24 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
+                        <encoding>UTF-8</encoding>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <properties>
+                            <!-- Work around. Surefire does not include enough
+                                 information to disambiguate between different
+                                 examples and scenarios. -->
+                            <configurationParameters>
+                                cucumber.junit-platform.naming-strategy=long
+                            </configurationParameters>
+                        </properties>
                     </configuration>
                 </plugin>
 
@@ -92,12 +108,6 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>${jacoco.version}</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire-plugin.version}</version>
                 </plugin>
 
                 <plugin>
