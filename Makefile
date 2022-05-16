@@ -8,7 +8,7 @@ DOCKER_IMAGE := "${DOCKER_PROJECT_REGISTRY}/${APP_NAME}-exposition:${CONTAINER_V
 all : 	ci e2e clean
 .PHONY: all
 
-ci : 	setup build
+ci : 	setup build build_and_publish_container_image launch_quality_scan generate_living_documentation_for_domain
 .PHONY: ci
 
 e2e : 	setup deploy_to_kubernetes launch_e2e_tests delete_deployment_from_kubernetes generate_living_documentation_for_e2e
