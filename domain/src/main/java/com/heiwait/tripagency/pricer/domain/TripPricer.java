@@ -15,6 +15,10 @@ public class TripPricer implements PriceComputorDriverPort {
     public Either<BusinessErrors, Integer> priceTrip(final Destination destination, final TravelClass travelClass) {
         Either<BusinessErrors, Trip> tripEither = tripRepository.findTripByDestination(destination);
 
+        return priceTrip(travelClass, tripEither);
+    }
+
+    private Either<BusinessErrors, Integer> priceTrip(TravelClass travelClass, Either<BusinessErrors, Trip> tripEither) {
         if(tripEither.isLeft()) {
             return Either.left(tripEither.getLeft());
         }
