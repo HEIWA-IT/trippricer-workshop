@@ -19,11 +19,7 @@ public class TripPricer implements PriceComputorDriverPort {
     }
 
     private Either<BusinessErrors, Integer> priceTrip(TravelClass travelClass, Either<BusinessErrors, Trip> tripEither) {
-        if(tripEither.isLeft()) {
-            return Either.left(tripEither.getLeft());
-        }
-
-        return Either.right(priceTrip(travelClass, tripEither.get()));
+        return tripEither.fold(Either::left, trip -> Either.right(priceTrip(travelClass, tripEither.get())));
     }
 
     private Integer priceTrip(TravelClass travelClass, Trip trip) {
