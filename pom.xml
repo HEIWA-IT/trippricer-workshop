@@ -14,8 +14,6 @@
         <module>specifications</module>
         <module>domain</module>
         <module>repository</module>
-        <module>application</module>
-        <module>exposition</module>
     </modules>
 
     <properties>
