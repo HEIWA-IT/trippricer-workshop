@@ -13,7 +13,6 @@
     <modules>
         <module>specifications</module>
         <module>domain</module>
-        <module>repository</module>
     </modules>
 
     <properties>
