@@ -43,13 +43,7 @@ function build()
 {
   echo "Using building artifacts"
   echo "Version used for building:"  "${ARTIFACT_VERSION}"
-
-  if [[ "${BUILD_TYPE}" = "maven" ]]
-    then
-      ./pipeline/scripts/2_build_artifacts/build_with_maven.sh "${ARTIFACT_VERSION}"
-    else
-      ./pipeline/scripts/2_build_artifacts/build_with_gradle.sh "${ARTIFACT_VERSION}"
-  fi
+  ./pipeline/scripts/2_build_artifacts/build_with_maven.sh "${ARTIFACT_VERSION}"
 }
 
 ################################################################################

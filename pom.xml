@@ -16,31 +16,27 @@
         <module>repository</module>
         <module>application</module>
         <module>exposition</module>
-        <module>e2e</module>
     </modules>
 
     <properties>
         <revision>revision</revision>
-
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version>
-
+        <docker.baseImage.name>openjdk</docker.baseImage.name>
+        <docker.baseImage.version>17-jdk-slim</docker.baseImage.version>
+        <docker.registry.password />
+        <docker.registry.username />
         <jacoco.version>0.8.8</jacoco.version>
         <java-rest-project.version>1.4.11</java-rest-project.version>
-        <spring-boot.version>2.6.6</spring-boot.version>
-
+        <java.version>17</java.version>
+        <jib.version>3.2.1</jib.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M6</maven-surefire-plugin.version>
-
         <project.build.directory>build</project.build.directory>
-
-        <jib.version>3.2.1</jib.version>
-        <docker.baseImage.name>openjdk</docker.baseImage.name>
-        <docker.baseImage.version>17-jdk-slim</docker.baseImage.version>
-        <docker.registry.username></docker.registry.username>
-        <docker.registry.password></docker.registry.password>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <revision>revision</revision>
+        <sonar.host.url>https://sonar.heiwa-it.com/</sonar.host.url>
+        <spring-boot.version>2.6.6</spring-boot.version>
     </properties>
 
     <dependencyManagement>

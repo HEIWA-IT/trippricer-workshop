@@ -45,7 +45,7 @@ function build()
 {
   echo "Using mvnw"
   ./mvnw versions:set -DnewVersion="${ARTIFACT_VERSION}" ${MAVEN_CLI_OPTS}  || exit 1
-  ./mvnw ${MAVEN_GOAL} ${MAVEN_CLI_OPTS} -pl !e2e -fn || exit 1
+  ./mvnw ${MAVEN_GOAL} ${MAVEN_CLI_OPTS} -fn || exit 1
   ./mvnw versions:revert ${MAVEN_CLI_OPTS}  || exit 1
 }
 
