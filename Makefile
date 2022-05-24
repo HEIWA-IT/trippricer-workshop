@@ -1,4 +1,3 @@
-include $(HOME)/.development.env
 include .project.env
 
 ARTIFACT_VERSION := $(shell ./pipeline/scripts/1_setup/determine_version.sh "${COMMIT_BRANCH}" "${VERSION}")
