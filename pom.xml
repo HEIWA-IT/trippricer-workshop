@@ -182,13 +182,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${spring.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
                 <version>${assertJ.version}</version>
@@ -354,15 +347,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>${maven_repository_id}_snapshots</id>
-            <url>${maven_repository_snapshots}</url>
-        </snapshotRepository>
-        <repository>
-            <id>${maven_repository_id}_releases</id>
-            <url>${maven_repository_releases}</url>
-        </repository>
-    </distributionManagement>
 </project>
