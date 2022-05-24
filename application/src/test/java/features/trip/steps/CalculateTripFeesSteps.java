@@ -8,11 +8,11 @@ import com.heiwait.tripagency.pricer.domain.error.ErrorMessagesProperties;
 import features.trip.config.AppConfig;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
-import io.vavr.control.Either;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -46,7 +46,7 @@ public class CalculateTripFeesSteps {
 
     @Given("the customer wants to travel to {string}")
     public void the_customer_wants_to_travel_to(String dest) {
-        destination = new Destination(dest);
+        new PendingException();
     }
 
     @ParameterType(".*")
@@ -56,40 +56,36 @@ public class CalculateTripFeesSteps {
 
     @Given("the customer wants to travel in {travelClass} class")
     public void the_customer_wants_to_travel_in_class(TravelClass travelClass) {
-        this.travelClass = travelClass;
+        new PendingException();
     }
 
     @Given("the economic travel ticket price is {int}€")
     public void the_economic_travel_ticket_price_is_€(int ticketPrice) {
-        this.ticketPrice = ticketPrice;
+        new PendingException();
     }
 
     @Given("the stay fees are {int}€")
     public void the_stay_fees_are_€(Integer stayFees) {
-        this.stayFees = stayFees;
+        new PendingException();
     }
 
     @Given("the agency fees are {int}€")
     public void the_agency_fees_are_€(Integer agencyFees) {
-        this.agencyFees = agencyFees;
+        new PendingException();
     }
 
     @When("the customer asked for the trip price")
     public void the_customer_asked_for_the_trip_price() {
-        computedPriceEither = tripPricer.priceTrip(destination, travelClass);
-
-        if (computedPriceEither.isLeft()){
-            errorMessage = ErrorMessagesProperties.getErrorMessageFromErrorCode(computedPriceEither.getLeft().code());
-        }
+        new PendingException();
     }
 
     @Then("the trip price is {int}€")
     public void the_trip_price_is_€(Integer expectedPrice) {
-        assertThat(expectedPrice).isEqualTo(computedPriceEither.get());
+        new PendingException();
     }
 
     @Then("the trip price returns the following message {string}")
     public void the_trip_price_returns_the_following_message(String expectedMessage) {
-        assertThat(expectedMessage).isEqualTo(errorMessage);
+        new PendingException();
     }
 }
