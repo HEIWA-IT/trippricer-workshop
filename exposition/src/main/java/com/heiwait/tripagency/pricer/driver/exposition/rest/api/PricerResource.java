@@ -39,14 +39,7 @@ public class PricerResource {
     public ResponseEntity<?> priceTrip(
             @PathVariable(value = "destination") String destinationName,
             @PathVariable(value = "travelClass") TravelClass travelClass) {
-        Destination destination = new Destination(destinationName);
-        Either<BusinessErrors, Integer> travelPriceEither = tripPricer.priceTrip(destination, travelClass);
-
-        if (travelPriceEither.isLeft()) {
-            return processErrorMessage(travelPriceEither.getLeft());
-        }
-
-        return new ResponseEntity<>(travelPriceEither.get(), HttpStatus.OK);
+       return null;
     }
 
     private ResponseEntity<ErrorMessage> processErrorMessage(BusinessErrors error) {

@@ -1,6 +1,0 @@
-tripagency-exposition:
-  container_name: trip
-  image: ${DOCKER_IMAGE}
-  restart: unless-stopped
-  ports:
-    - 12378:12378
