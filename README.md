@@ -54,7 +54,7 @@ In terms of knowledge:
 - Bash for understanding the scripts and make it evolve
 
 If you do not want to weigh down your machine, support via GitPod is possible.
-## IF you use GitPod execute the followng command to have the correct JDK: 'sdk install java 17-open && sdk default java 17-open'
+## IF you use GitPod execute the following command to have the correct JDK: 'sdk install java 17-open && sdk default java 17-open'
 
 ##  __It is advised to run the following command on the master branch: make ci__
 This will allow you to download the project's dependencies in advance.
@@ -129,7 +129,7 @@ Cette session de trois heures sera découpée comme suit :
 ####  Take-away
 - Bien entendu le(s) concept(s) de l'architecture hexagonale ^^.
 - Pour la mise en place de cette architecture, nous utiliserons Cucumber pour jouer des tests au format langage naturel. Si vous ne connaissez pas ou peu Cucumber, ce sera aussi le moment d'en apprendre plus sur le sujet.
-- Utilisation de scripts shell appelé dans un Makefile pour simuler les stages/jobd d'une pipeline de CI/CD.
+- Utilisation de scripts shell appelé dans un Makefile pour simuler les stages/jobs d'une pipeline de CI/CD.
 
 #### Pré-requis
 Concernant votre environnement de développement il vous faudra avoir sur votre machine
@@ -145,7 +145,7 @@ En terme de connaissances :
 Si vous ne souhaitez pas alourdir votre machine, la prise en charge en passant par GitPod est possible.
 
 ###  __Il est conseillé d’exécuter la commande suivante sur la branche master : make ci__
-Cela vous permettra de télécharger ne avance les dépendances du projet.  
+Cela vous permettra de télécharger en avance les dépendances du projet.  
 Pratique quand la connexion wifi ou le réseau 4G sont de faible débit.
 ________________________________________________________________________________________________________________________
 
