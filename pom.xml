@@ -37,7 +37,7 @@
         <junit-platform-launcher.version>1.7.0</junit-platform-launcher.version>
         <liquibase-core.version>4.3.5</liquibase-core.version>
         <mockito.version>3.10.0</mockito.version>
-        <postgresql.version>42.2.14</postgresql.version>
+        <postgresql.version>42.4.1</postgresql.version>
         <rest-assured.version>4.4.0</rest-assured.version>
         <springdoc-openapi-ui.version>1.6.7</springdoc-openapi-ui.version>
         <spring.version>5.3.7</spring.version>
